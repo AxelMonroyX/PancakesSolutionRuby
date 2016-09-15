@@ -7,40 +7,48 @@ for i in 0..num_cases - 1
   pancakes = Array.new(num_plates)
   pancakes = gets.split(' ').map(&:to_i)
 
-  max_p = (pancakes.sort_by {|k,v| v}.reverse)[0].to_i
+  max_p = pancakes.max
+  # binding.pry
+  counter = Array.new(max_p)
   max_p += 1
   puts "MAX: "+    max_p.to_s
-  counter = Array.new(10000)
 
 
+  for c in 0..counter.length-1
+    counter[c]=0
+  end
+# binding.pry
   for j in 0..pancakes.length-1
 
-    if counter[pancakes[j]] == nil
-      counter[pancakes[j]] = 0
-    end
     # binding.pry
-counter[(pancakes[j])] = counter[(pancakes[j])] +1
+    counter[(pancakes[j]-1)] += 1
   end
+
+  # ----------Checked
+  binding.pry
+
+
 
 
   puts '--------------------------------------'
-  moves = (pancakes.sort_by {|k,v| v}.reverse)[0].to_i;
-  puts "MOVESS"+moves.to_s
+  moves = pancakes.max.to_i;
+
   # min_minutes = 10_000
   splits = 0
-  counter.each.with_index(1) do |_item_k, k|
-    # splits = 0
+for k in 0..counter.length-1
+  pk = k +1
     for l in 1..counter.length
-      splits =  splits + (((l - 1) / k) * counter[l].to_i)
-      # binding.pry
+      splits =  splits + (((l - 1) / pk) * counter[l].to_i)
+
     end
 
-    if splits + k.to_i <= moves.to_i
-      moves = splits + k
+    if splits + pk.to_i <= moves.to_i
+      moves = splits + pk
     end
 
+    puts "Splits:   "+pk.to_s+ "   "+counter[k].to_s
 
-end
+  end
 
-printf "Case #%d: %d\n", (i + 1), moves
+  printf "Case #%d: %d\n", (i + 1), moves
 end
