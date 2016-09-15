@@ -17,7 +17,7 @@ for i in 0..num_cases - 1
   for c in 0..counter.length-1
     counter[c]=0
   end
-# binding.pry
+  # binding.pry
   for j in 0..pancakes.length-1
 
     # binding.pry
@@ -34,9 +34,10 @@ for i in 0..num_cases - 1
   moves = pancakes.max.to_i;
 
   # min_minutes = 10_000
-  splits = 0
-for k in 0..counter.length-1
-  pk = k +1
+  for k in 0..counter.length-1
+    splits = 0
+
+    pk = k +1
     for l in 1..counter.length
       splits =  splits + (((l - 1) / pk) * counter[l].to_i)
 
@@ -50,5 +51,5 @@ for k in 0..counter.length-1
 
   end
 
-  printf "Case #%d: %d\n", (i + 1), moves
+  printf "Case #%d: %d\n", (i + 1), moves+1
 end
