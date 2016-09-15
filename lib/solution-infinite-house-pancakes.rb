@@ -8,29 +8,19 @@ for i in 0..num_cases - 1
   pancakes = gets.split(' ').map(&:to_i)
 
   max_p = pancakes.max
-  # binding.pry
   counter = Array.new(max_p)
   max_p += 1
-  puts "MAX: "+    max_p.to_s
 
 
   for c in 0..counter.length-1
     counter[c]=0
   end
-  # binding.pry
+
   for j in 0..pancakes.length-1
 
-    # binding.pry
     counter[(pancakes[j]-1)] += 1
   end
 
-  # ----------Checked
-  binding.pry
-
-
-
-
-  puts '--------------------------------------'
   moves = pancakes.max.to_i;
 
   # min_minutes = 10_000
@@ -38,8 +28,9 @@ for i in 0..num_cases - 1
     splits = 0
 
     pk = k +1
-    for l in 1..counter.length
-      splits =  splits + (((l - 1) / pk) * counter[l].to_i)
+    for l in 0..counter.length-1
+      pl = l+1
+      splits =  splits + (((pl - 1) / pk) * counter[l].to_i)
 
     end
 
@@ -47,9 +38,9 @@ for i in 0..num_cases - 1
       moves = splits + pk
     end
 
-    puts "Splits:   "+pk.to_s+ "   "+counter[k].to_s
+    # puts "Splits:   "+pk.to_s+ "   "+counter[k].to_s
 
   end
 
-  printf "Case #%d: %d\n", (i + 1), moves+1
+  printf "Case #%d: %d\n", (i + 1), moves
 end
